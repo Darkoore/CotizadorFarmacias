@@ -12,10 +12,21 @@ def index():
     if response.status_code == 200:
         html_content = response.text
         soup = BeautifulSoup(html_content, 'html.parser')
+
+        # Obtener el título de la página
         title = soup.title.text
+
+        # Obtener la información de todas las etiquetas meta
+        meta_data_list = []
+        meta_tags = soup.find_all('meta')
+        for tag in meta_tags:
+            meta_data_list.append(tag.attrs)
+
+        # Obtener los enlaces de la página
         links = [link['href'] for link in soup.find_all('a')]
+
         # Renderizar la plantilla index.html y pasar los datos del scraping
-        return render_template('index.html', title=title, links=links)
+        return render_template('index.html', title=title, meta_data_list=meta_data_list, links=links)
     else:
         return "Error al obtener la información del scraping"
 
