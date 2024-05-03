@@ -1,38 +1,28 @@
-<<<<<<< Updated upstream
-import requests
-from bs4 import BeautifulSoup
-
-@app.route('/scrape')
-def scrape():
-    # Realizar web scraping
-    url = 'https://example.com'
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'html.parser')
-
-    # Extraer datos
-    # ...
-
-    # Renderizar plantilla con los datos obtenidos
-    return render_template('scrape_results.html', data=datos_obtenidos)
-=======
 from bs4 import BeautifulSoup
 import requests
 import urllib.request
 
 #Resumir sitio a scrapear en una variable
 sitioObjetivo = 'https://www.farmaciasahumada.cl/medicamentos'
-result = requests.get(sitioObjetivo)
-content = result.text
 
-soup = BeautifulSoup(content, 'lxml')
+resultado = requests.get(sitioObjetivo)
+cargarPagina = BeautifulSoup(resultado.content, "lxml")
 #Esto obtiene la pagina entera
-#print(soup.prettify())
+tablasContenidos = cargarPagina.find('div', attrs={'class':"col-sm-12 col-md-9"})
 
-#Realiza la busqueda de la clase y la almacena
-remedio = soup.find('div', class_='product-tile-brand')
+#https://clarusway.com/your-everyday-superpower-how-to-do-web-scrapping/ desde aca se obtuvo el bloque de codigo de abajo
 
-#Busca en la lista almacenada previamente el texto de un archivo span
-listaRemedio = remedio.find('span').get_text()
+medicamentoNombre= []
+medicamentoPrecio= []
+medicamentoDosis = []
+medicamentoLink  = []
 
-print (listaRemedio)
->>>>>>> Stashed changes
+
+for contenidos in tablasContenidos.find_all('div', attrs={'class':"col-6 col-sm-4 col-lg-3"}):
+    medicamentoNombre = contenidos.find('span',attrs={'class':"product-tile-brand"})
+    medicamentoPrecio = contenidos.find('span',attrs={'class':"value d-flex align-items-center"})
+    medicamentoDosis  = contenidos.find('a',attrs={'class':"link"})
+    medicamentoLink   = contenidos.find('a',attrs={'class':"link"}).get("href")
+    print (medicamentoNombre) 
+    '''esta detectando que existen 14 items en la busqueda de linea 21, pero asumo que los .find no estan funcionando
+    porque no estan en amarillo'''
