@@ -1,14 +1,15 @@
+from flask import Flask, render_template, request, send_file
 
+app = Flask(__name__, template_folder='paginaWeb', static_folder='paginaWeb/Diseños')
 
-@app.route('/scrape')
-def scrape():
-    # Realizar web scraping
-    url = 'https://example.com'
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'html.parser')
+@app.route('/')
+def test():
+    #return render_template('index.html')
+    ip_address = request.remote_addr
+    return f'<img src="/imagen"><br>IP address: {ip_address}'
+@app.route('/imagen')
+def imagen():
+    return send_file('paginaWeb/Diseños/Imagenes/Memingo.jpg', mimetype='image/jpg')
 
-    # Extraer datos
-    # ...
-
-    # Renderizar plantilla con los datos obtenidos
-    return render_template('scrape_results.html', data=datos_obtenidos)
+if __name__ == '__main__':
+    app.run(debug=True)

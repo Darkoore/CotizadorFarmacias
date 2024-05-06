@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>HTML</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Diseños/estilos.css">
+</head>
+
+<body>
+  <!--Navbar no se ajusta a las esquinas debido a que contenedor tiene la imagen meme xD-->
+  <div class="contenedor">
+  <div class="navbar">
+    <a href="#inicio">Inicio</a>
+    <a href="#Catalogo">Catalogo</a>
+    <!-- Icono de lupa para mostrar la barra de búsqueda -->
+    <div class="search-icon" onclick="mostrarBarraBusqueda()">&#128269;</div>
+    <!-- Barra de búsqueda (inicialmente oculta) -->
+    <div class="search-container" id="searchContainer">
+        <form action="/buscar" method="GET">
+            <input type="text" placeholder="Buscar..." name="buscar">
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+  </div>
+<script>
+  function mostrarBarraBusqueda() {
+    var searchBar = document.getElementById("searchContainer");
+    searchBar.style.display = "block";
+  }
+  </script>
+  </div>
+</body>
+</html>

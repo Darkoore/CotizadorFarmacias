@@ -1,0 +1,65 @@
+/* Estilos para la barra de navegación */
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+/* Estilos para el icono de lupa */
+.search-icon {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 20px;
+    cursor: pointer;
+}
+
+.search-icon:hover {
+    background-color: #555;
+}
+
+/* Estilos para la barra de búsqueda */
+.search-container {
+    display: none; /* Inicialmente oculta */
+    float: left;
+    padding: 10px;
+}
+
+.search-container input[type=text] {
+    padding: 6px;
+    font-size: 17px;
+    border: none;
+    border-radius: 20px;
+}
+
+.search-container button {
+    padding: 6px 10px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.search-container button:hover {
+    background: #ccc;
+}
+
+.contenedor {
+    width: 100%; /* Ancho completo */
+    height: 100vh; /* Altura de la ventana */
+    background-image: url('Imagenes/fondo.jpg'); /* URL de la imagen de fondo */
+    background-repeat: repeat; /* Repetir la imagen horizontal y verticalmente */
+}
